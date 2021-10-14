@@ -2,9 +2,9 @@
   <data>
     <!-- explicit list view definition -->
 <!--
-    <record model="ir.ui.view" id="../industria/open_academy.list">
-      <field name="name">../industria/open_academy list</field>
-      <field name="model">../industria/open_academy.../industria/open_academy</field>
+    <record model="ir.ui.view" id="modulos-extras/open_academy.list">
+      <field name="name">Modulos-Extras/OpenAcademy list</field>
+      <field name="model">modulos-extras/open_academy.modulos-extras/open_academy</field>
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
@@ -17,18 +17,18 @@
 
     <!-- actions opening views on models -->
 <!--
-    <record model="ir.actions.act_window" id="../industria/open_academy.action_window">
-      <field name="name">../industria/open_academy window</field>
-      <field name="res_model">../industria/open_academy.../industria/open_academy</field>
+    <record model="ir.actions.act_window" id="modulos-extras/open_academy.action_window">
+      <field name="name">Modulos-Extras/OpenAcademy window</field>
+      <field name="res_model">modulos-extras/open_academy.modulos-extras/open_academy</field>
       <field name="view_mode">tree,form</field>
     </record>
 -->
 
     <!-- server action to the one above -->
 <!--
-    <record model="ir.actions.server" id="../industria/open_academy.action_server">
-      <field name="name">../industria/open_academy server</field>
-      <field name="model_id" ref="model_../industria/open_academy_../industria/open_academy"/>
+    <record model="ir.actions.server" id="modulos-extras/open_academy.action_server">
+      <field name="name">Modulos-Extras/OpenAcademy server</field>
+      <field name="model_id" ref="model_modulos-extras/open_academy_modulos-extras/open_academy"/>
       <field name="state">code</field>
       <field name="code">
         action = {
@@ -42,19 +42,19 @@
 
     <!-- Top menu item -->
 <!--
-    <menuitem name="../industria/open_academy" id="../industria/open_academy.menu_root"/>
+    <menuitem name="Modulos-Extras/OpenAcademy" id="modulos-extras/open_academy.menu_root"/>
 -->
     <!-- menu categories -->
 <!--
-    <menuitem name="Menu 1" id="../industria/open_academy.menu_1" parent="../industria/open_academy.menu_root"/>
-    <menuitem name="Menu 2" id="../industria/open_academy.menu_2" parent="../industria/open_academy.menu_root"/>
+    <menuitem name="Menu 1" id="modulos-extras/open_academy.menu_1" parent="modulos-extras/open_academy.menu_root"/>
+    <menuitem name="Menu 2" id="modulos-extras/open_academy.menu_2" parent="modulos-extras/open_academy.menu_root"/>
 -->
     <!-- actions -->
 <!--
-    <menuitem name="List" id="../industria/open_academy.menu_1_list" parent="../industria/open_academy.menu_1"
-              action="../industria/open_academy.action_window"/>
-    <menuitem name="Server to list" id="../industria/open_academy" parent="../industria/open_academy.menu_2"
-              action="../industria/open_academy.action_server"/>
+    <menuitem name="List" id="modulos-extras/open_academy.menu_1_list" parent="modulos-extras/open_academy.menu_1"
+              action="modulos-extras/open_academy.action_window"/>
+    <menuitem name="Server to list" id="modulos-extras/open_academy" parent="modulos-extras/open_academy.menu_2"
+              action="modulos-extras/open_academy.action_server"/>
 -->
   </data>
 </odoo>
