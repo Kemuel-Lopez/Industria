@@ -16,13 +16,13 @@
     'version': '1.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'contacts'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'views/views.xml',
-        'views/res_openacademy.xml',
+        'views/partner.xml',
         'views/openacademy.xml',
         'reportes/reports.xml'
 
