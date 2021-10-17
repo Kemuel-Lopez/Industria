@@ -31,7 +31,7 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="course_search_view">
+        <record model="ir.ui.view" id="course_tree_view">
             <field name="name">course.tree</field>
             <field name="model">openacademy.course</field>
             <field name="arch" type="xml">
@@ -44,17 +44,6 @@
         </record>
 
 
-        <record model="ir.ui.view" id="course_tree_view">
-            <field name="name">course.tree</field>
-            <field name="model">openacademy.course</field>
-            <field name="arch" type="xml">
-                <tree string="Course Tree">
-                    <field name="name"/>
-                    <field name="responsible_id"/>
-                </tree>
-            </field>
-        </record>
-
         <record model="ir.actions.act_window" id="course_list_action">
             <field name="name">Cursos</field>
             <field name="res_model">openacademy.course</field>
@@ -64,9 +53,113 @@
                 <p class="o_view_nocontent_smiling_face">Creando el primer curso</p>
             </field>
         </record>
+
         <menuitem id="main_openacademy_menu" name="Open Academy"/>
         <menuitem id="openacademy_menu" name="Open Academy" parent="main_openacademy_menu"/>
         <menuitem id="menu_cursos" name="Cursos" parent="openacademy_menu" action="course_list_action"/>
+
+
+        <record model="ir.ui.view" id="session_form_view">
+            <field name="name">session.form</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <form string="Formulario de Sesiones">
+                    <sheet>
+                        <group>
+                            <group string="Datos Generales">
+                                <field name="name"/>
+                                <field name="instructor_id"/>
+                                <field name="course_id"/>
+                                <field name="active"/>
+                            </group>
+                            <group string="Calendario">
+                                <field name="start_date"/>
+                                <field name="duration"/>
+                                <field name="seats"/>
+                                <field name="taken_seats" widget="progressbar"/>
+                            </group>
+                            <label for="attendee_ids"/>
+                            <field name="attendee_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="session_tree_view">
+            <field name="name">session.tree</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <tree string="Session Tree" decoration-info="duration&lt;5" decoration-danger="duration&gt;15">
+                    <field name="name"/>
+                    <field name="course_id"/>
+                    <field name="duration" invisible="1"/>
+                    <field name="taken_seats" widget="progressbar"/>
+                </tree>
+            </field>
+        </record>
+
+
+       <!--vista kanbam-->
+
+        <record model="ir.ui.view" id="view_openacad_session_kanban">
+            <field name="name">openacademy.session.kanban</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="course_id">
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div
+                                    t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                                  oe_kanban_global_click_edit oe_semantic_html_override
+                                                  oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+                                <div class="oe_dropdown_kanban">
+                                    <div class="oe_dropdown_toggle">
+                                        <i class="fa fa-bars fa-lg" title="Manage" aria-label="Manage"/>
+                                        <ul class="oe_dropdown_menu">
+                                            <li>
+                                                <a type="delete">Delete</a>
+                                            </li>
+                                            <li>
+                                                <ul class="oe_kanban_colorpicker"
+                                                    data-field="color"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="oe_clear"></div>
+                                </div>
+                                <div t-attf-class="oe_kanban_content">
+
+                                    Nombre de Sesion:
+                                    <field name="name"/>
+                                    <br/>
+                                    Fecha de Inicio:
+                                    <field name="start_date"/>
+                                    <br/>
+                                    Duración:
+                                    <field name="duration"/>
+                                    <br/>
+                                    Asientos Disponibles:
+                                    <field name="seats_res"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="session_list_action">
+            <field name="name">Sesiones</field>
+            <field name="res_model">openacademy.session</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <menuitem id="session_menu" name="Sesiones"
+                  parent="openacademy_menu"
+                  action="session_list_action"/>
 
 
     </data>

@@ -49,7 +49,7 @@ class Session(models.Model):
     _name = 'openacademy.session'
     _description = "OpenAcademy Sessions"
 
-    name = fields.Char(string="Nombre Completo",
+    name = fields.Char(string="Nombre de sesión",
                        required=True)
     start_date = fields.Date(string="Fecha de Inicio",
                              default=fields.Date.today)
@@ -72,7 +72,7 @@ class Session(models.Model):
 
                                             ('category_id.name',
                                              'ilike',
-                                             "Teacher")]
+                                             "Profesor")]
                                     )
 
     course_id = fields.Many2one('openacademy.course',
@@ -100,11 +100,23 @@ class Session(models.Model):
         compute='_get_attendees_count',
         store=True)
 
+    seats_res= fields.Float(string="Asientos Restantes",
+                               compute='_taken_res')
+
+    @api.depends('seats', 'attendee_ids')
+    def _taken_res(self):
+        for r in self:
+            if not r.seats:
+                r.seats_res = 0.0
+            else:
+                r.seats_res = (- len(r.attendee_ids) + r.seats)
+
     @api.depends('seats', 'attendee_ids')
     def _taken_seats(self):
         for r in self:
             if not r.seats:
                 r.taken_seats = 0.0
+                r.seats_res=0.0
             else:
                 r.taken_seats = 100.0 * len(r.attendee_ids) / r.seats
 
