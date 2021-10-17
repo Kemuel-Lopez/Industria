@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="course_form_view">
+            <field name="name">curso.form</field>
+            <field name="model">openacademy.course</field>
+            <field name="priority" eval="16"/>
+            <field name="arch" type="xml">
+                <form string="Course Forms">
+                    <group colspan="4">
+                        <group colspan="2" col="2">
+                            <separator string="Formulario de Inscripción de Cursos" colspan="2"/>
+                            <field name="name"/>
+                            <field name="responsible_id"/>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Descripción">
+                                <field name="description" nolabel="1"/>
+                            </page>
+                            <page string="Sesiones">
+                                <field name="session_ids">
+                                    <tree string="Sesiones Registradas">
+                                        <field name="name"/>
+                                        <field name="instructor_id"/>
+                                        <field name="active"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="course_search_view">
+            <field name="name">course.tree</field>
+            <field name="model">openacademy.course</field>
+            <field name="arch" type="xml">
+                <tree string="Course Tree">
+                    <field name="name"/>
+                    <field name="responsible_id"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="course_tree_view">
+            <field name="name">course.tree</field>
+            <field name="model">openacademy.course</field>
+            <field name="arch" type="xml">
+                <tree string="Course Tree">
+                    <field name="name"/>
+                    <field name="responsible_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="course_list_action">
+            <field name="name">Cursos</field>
+            <field name="res_model">openacademy.course</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context" eval="{'search_default_my_courses': 1}"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Creando el primer curso</p>
+            </field>
+        </record>
+        <menuitem id="main_openacademy_menu" name="Open Academy"/>
+        <menuitem id="openacademy_menu" name="Open Academy" parent="main_openacademy_menu"/>
+        <menuitem id="menu_cursos" name="Cursos" parent="openacademy_menu" action="course_list_action"/>
+
+
+    </data>
+</odoo>
