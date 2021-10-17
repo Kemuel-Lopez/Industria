@@ -99,6 +99,8 @@
                 </tree>
             </field>
         </record>
+
+        <!-- calendar view -->
         <record model="ir.ui.view" id="session_calendar_view">
             <field name="name">session.calendar</field>
             <field name="model">openacademy.session</field>
@@ -108,7 +110,6 @@
                 </calendar>
             </field>
         </record>
-
 
         <!--vista kanbam-->
 

@@ -1,6 +1,6 @@
 <odoo>
 
-    
+
     <record model="ir.ui.view" id="partner_instructor_form_view">
         <field name="name">partner.instructor</field>
         <field name="model">res.partner</field>

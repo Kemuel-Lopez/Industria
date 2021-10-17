@@ -12,5 +12,5 @@ class Partner(models.Model):
     instructor = fields.Many2many("Instructor", default=False)
 
     session_ids = fields.Many2many('openacademy.session',
-        string="Attended Sessions", readonly=True)
+        string="Sesiones asistidas", readonly=True)
 

@@ -24,6 +24,7 @@
         'views/views.xml',
         'views/res_openacademy.xml',
         'views/openacademy.xml',
+        'reportes/reports.xml'
 
     ],
     # only loaded in demonstration mode
