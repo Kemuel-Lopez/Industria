@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-
+from datetime import timedelta
 from odoo import models, fields, api, exceptions
 
 
@@ -13,7 +13,7 @@ class Course(models.Model):
 
 
     responsible_id = fields.Many2one('res.users',
-        ondelete='set null', string="Profesor", index=True, help='Este es el profesor asignado')
+        ondelete='set null', string="Responsable", index=True, help='Este es el profesor asignado')
 
 
     session_ids = fields.One2many('openacademy.session',
@@ -66,14 +66,7 @@ class Session(models.Model):
     color = fields.Integer()
 
     instructor_id = fields.Many2one('res.partner',
-                                    string="Instructor",
-                                    domain=['|',
-                                            ('instructor', '=', True),
-
-                                            ('category_id.name',
-                                             'ilike',
-                                             "Profesor")]
-                                    )
+                                    string="Instructor")
 
     course_id = fields.Many2one('openacademy.course',
                                 ondelete='cascade',
@@ -81,7 +74,7 @@ class Session(models.Model):
                                 required=True)
 
     attendee_ids = fields.Many2many('res.partner',
-                                    string="Asistentes")
+                                    string="Estudiantes")
 
     taken_seats = fields.Float(string="Asientos Reservados",
                                compute='_taken_seats')
@@ -96,7 +89,7 @@ class Session(models.Model):
                          inverse='_set_hours')
 
     attendees_count = fields.Integer(
-        string="Número de Asistencia",
+        string="Número de Estudiantes",
         compute='_get_attendees_count',
         store=True)
 
@@ -132,8 +125,8 @@ class Session(models.Model):
         if self.seats < len(self.attendee_ids):
             return {
                 'warning': {
-                    'title': _("Demasiadas asistentes"),
-                    'message': _("Aumentar los asientos o eliminar el exceso de asistentess"),
+                    'title': _("Demasiados Estudiantes"),
+                    'message': _("Aumentar los asientos o eliminar el exceso de Estudiantes"),
                 },
             }
 
@@ -171,4 +164,4 @@ class Session(models.Model):
     def _check_instructor_not_in_attendees(self):
         for r in self:
             if r.instructor_id and r.instructor_id in r.attendee_ids:
-                raise exceptions.ValidationError(_("El instructor de una sesión no puede ser un asistente"))
+                raise exceptions.ValidationError(_("El instructor de una sesión no puede ser un Estudiante"))
