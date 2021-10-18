@@ -122,7 +122,7 @@
             </field>
         </record>
 
-        <!-- calendar view -->
+
         <record model="ir.ui.view" id="session_calendar_view">
             <field name="name">session.calendar</field>
             <field name="model">openacademy.session</field>
@@ -133,7 +133,6 @@
             </field>
         </record>
 
-        <!--vista kanbam-->
 
         <record model="ir.ui.view" id="view_openacad_session_kanban">
             <field name="name">openacademy.session.kanban</field>

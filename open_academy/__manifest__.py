@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': """'OpenAcademy'""",
+    'name': """Open Academy""",
 
-    'summary': """'Módulo #1 para la clase de Industria del Software - UNAH'""",
+    'summary': """Módulo #1 para la clase de Industria del Software - UNAH""",
 
-    'description': """'III periodo 2021'""",
+    'description': """Mini proyecto correspondiente al III periodo 2021""",
 
-    'author': "Kemuel-López",
+    'author': "Kemuel-López -20141004944",
     'website': "https://github.com/Kemuel-Lopez/Industria",
 
     # Categories can be used to filter modules in modules listing
